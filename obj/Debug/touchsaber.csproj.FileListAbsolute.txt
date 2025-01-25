@@ -20,3 +20,7 @@ C:\Users\James Chemacki\Documents\Coding\touchsaber\obj\Debug\touchsaber.csproj.
 C:\Users\James Chemacki\Documents\Coding\touchsaber\obj\Debug\touchsaber.dll
 C:\Users\James Chemacki\Documents\Coding\touchsaber\obj\Debug\touchsaber.pdb
 C:\Users\James Chemacki\Documents\Coding\touchsaber\bin\Debug\UnityEngine.InputLegacyModule.dll
+C:\Users\James Chemacki\Documents\Coding\touchsaber\bin\Debug\VRUI.dll
+C:\Users\James Chemacki\Documents\Coding\touchsaber\bin\Debug\BeatmapCore.dll
+C:\Users\James Chemacki\Documents\Coding\touchsaber\bin\Debug\BGLib.Attributes.dll
+C:\Users\James Chemacki\Documents\Coding\touchsaber\bin\Debug\DataModels.dll
