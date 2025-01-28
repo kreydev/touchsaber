@@ -4,7 +4,9 @@ using IPA.Config.Stores;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
@@ -17,6 +19,7 @@ namespace touchsaber
     {
         internal static Plugin Instance { get; private set; }
         internal static IPALogger Log { get; private set; }
+        public static ctrlMode mode;
 
         [Init]
         /// <summary>
@@ -30,6 +33,19 @@ namespace touchsaber
             Log = logger;
             Log.Info("touchsaber initialized.");
             Log.Info("spicy modding :)");
+
+            // set control mode
+            string filepath = Environment.CurrentDirectory + "/UserData";
+            if (!File.Exists(filepath + "/touchsaber.conf")) {
+                StreamWriter f = new StreamWriter(File.Create(filepath + "/touchsaber.conf"));
+                f.WriteLine(mode.ToString());
+                f.WriteLine("control modes: touch, keybmouse, controller, arrows");
+                f.Close();
+            }
+            StreamReader sr = new StreamReader(filepath + "/touchsaber.conf");
+            mode = Enum.Parse<ctrlMode>(sr.ReadLine());
+            sr.Close();
+            Console.WriteLine("Control Mode: " + mode);
         }
 
         #region BSIPA Config
