@@ -156,21 +156,12 @@ namespace touchsaber
                 {
                     for (int i = 0; i < bi.touchCount; i++)
                     {
-                        if (i == 0)
-                        {
-                            sabers2[1].transform.LookAt(goodcam.transform);
-                            sabers2[1].transform.Rotate(180, 180, 180);
-                            sabers2[1].transform.eulerAngles = new Vector3((bi.GetTouch(i).position.y - Screen.height / 3) * -.2f, (bi.GetTouch(i).position.x - 3 * Screen.width / 8) * .1f, 0);
-                            sabers2[1].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.GetTouch(i).position.x, bi.GetTouch(i).position.y, -goodcam.transform.position.z)) + new Vector3(0, 0, .2f);
-                            sabers2[1].transform.localPosition += new Vector3(0, 0, -.5f);
-                        }
-                        if (i == 1)
-                        {
-                            sabers2[0].transform.LookAt(goodcam.transform);
-                            sabers2[0].transform.Rotate(180, 180, 180);
-                            sabers2[0].transform.eulerAngles = new Vector3((bi.GetTouch(i).position.y - Screen.height / 3) * -.2f, (bi.GetTouch(i).position.x - 5 * Screen.width / 8) * .1f, 0);
-                            sabers2[0].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.GetTouch(i).position.x, bi.GetTouch(i).position.y, -goodcam.transform.position.z)) + new Vector3(0, 0, .2f);
-                            sabers2[0].transform.localPosition += new Vector3(0, 0, -.5f);
+                        if (i < 2) {
+                            sabers2[i].transform.LookAt(goodcam.transform);
+                            sabers2[i].transform.Rotate(180, 180, 180);
+                            sabers2[i].transform.eulerAngles = new Vector3((bi.GetTouch(i).position.y - Screen.height / 3) * -.2f, (bi.GetTouch(i).position.x - 3 * Screen.width / 8) * .1f, 0);
+                            sabers2[i].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.GetTouch(i).position.x, bi.GetTouch(i).position.y, -goodcam.transform.position.z)) + new Vector3(0, 0, .2f);
+                            sabers2[i].transform.localPosition += new Vector3(0, 0, -.5f);
                         }
                     }
                 }
