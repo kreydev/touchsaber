@@ -96,8 +96,12 @@ namespace touchsaber
             goodcam.transform.position = new Vector3(0.00f, 1.20f, -2.20f);
             Vector2 arrows = new Vector2(bi.GetAxisRaw("Horizontal"), bi.GetAxisRaw("Vertical"));
             Saber[] sabers = FindObjectsOfType<Saber>();
-            Camera camera = Camera.main;
-            
+            List<Saber> sabers2 = new List<Saber>();
+            foreach (Saber saber in sabers) {
+                if (Vector3.Distance(saber.transform.position, goodcam.transform.position) < 3) {
+                    sabers2.Append(saber);
+                }
+            }
 
             string objs = "---===---\n";
             foreach (GameObject g in FindObjectsOfType<GameObject>())
@@ -121,10 +125,10 @@ namespace touchsaber
                 // arrow keys
                 if (Plugin.mode == ctrlMode.arrows)
                 {
-                    sabers[0].transform.rotation = Quaternion.Slerp(sabers[0].transform.rotation, Quaternion.Euler(new Vector3(-arrows.y * 60, arrows.x * 60, 0)), .5f);
-                    sabers[0].transform.position = goodcam.transform.position + new Vector3(.2f, -.5f, .5f);
-                    sabers[1].transform.rotation = Quaternion.Slerp(sabers[1].transform.rotation, Quaternion.Euler(new Vector3(-arrows.y * 60, arrows.x * 60, 0)), .5f);
-                    sabers[1].transform.position = goodcam.transform.position + new Vector3(-.2f, -.5f, .5f);
+                    sabers2[0].transform.rotation = Quaternion.Slerp(sabers2[0].transform.rotation, Quaternion.Euler(new Vector3(-arrows.y * 60, arrows.x * 60, 0)), .5f);
+                    sabers2[0].transform.position = goodcam.transform.position + new Vector3(.2f, -.5f, .5f);
+                    sabers2[1].transform.rotation = Quaternion.Slerp(sabers2[1].transform.rotation, Quaternion.Euler(new Vector3(-arrows.y * 60, arrows.x * 60, 0)), .5f);
+                    sabers2[1].transform.position = goodcam.transform.position + new Vector3(-.2f, -.5f, .5f);
                 }
 
                 // touchscreen
@@ -134,19 +138,19 @@ namespace touchsaber
                     {
                         if (i == 0)
                         {
-                            sabers[1].transform.LookAt(goodcam.transform);
-                            sabers[1].transform.Rotate(180, 180, 180);
-                            sabers[1].transform.eulerAngles = new Vector3((bi.GetTouch(i).position.y - Screen.height / 3) * -.2f, (bi.GetTouch(i).position.x - 3 * Screen.width / 8) * .1f, 0);
-                            sabers[1].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.GetTouch(i).position.x, bi.GetTouch(i).position.y, -goodcam.transform.position.z)) + new Vector3(0, 0, .2f);
-                            sabers[1].transform.localPosition += new Vector3(0, 0, -.5f);
+                            sabers2[1].transform.LookAt(goodcam.transform);
+                            sabers2[1].transform.Rotate(180, 180, 180);
+                            sabers2[1].transform.eulerAngles = new Vector3((bi.GetTouch(i).position.y - Screen.height / 3) * -.2f, (bi.GetTouch(i).position.x - 3 * Screen.width / 8) * .1f, 0);
+                            sabers2[1].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.GetTouch(i).position.x, bi.GetTouch(i).position.y, -goodcam.transform.position.z)) + new Vector3(0, 0, .2f);
+                            sabers2[1].transform.localPosition += new Vector3(0, 0, -.5f);
                         }
                         if (i == 1)
                         {
-                            sabers[0].transform.LookAt(goodcam.transform);
-                            sabers[0].transform.Rotate(180, 180, 180);
-                            sabers[0].transform.eulerAngles = new Vector3((bi.GetTouch(i).position.y - Screen.height / 3) * -.2f, (bi.GetTouch(i).position.x - 5 * Screen.width / 8) * .1f, 0);
-                            sabers[0].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.GetTouch(i).position.x, bi.GetTouch(i).position.y, -goodcam.transform.position.z)) + new Vector3(0, 0, .2f);
-                            sabers[0].transform.localPosition += new Vector3(0, 0, -.5f);
+                            sabers2[0].transform.LookAt(goodcam.transform);
+                            sabers2[0].transform.Rotate(180, 180, 180);
+                            sabers2[0].transform.eulerAngles = new Vector3((bi.GetTouch(i).position.y - Screen.height / 3) * -.2f, (bi.GetTouch(i).position.x - 5 * Screen.width / 8) * .1f, 0);
+                            sabers2[0].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.GetTouch(i).position.x, bi.GetTouch(i).position.y, -goodcam.transform.position.z)) + new Vector3(0, 0, .2f);
+                            sabers2[0].transform.localPosition += new Vector3(0, 0, -.5f);
                         }
                     }
                 }
@@ -156,10 +160,10 @@ namespace touchsaber
                 {
                     Vector2 lstick = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
                     Vector2 rstick = new Vector2(Input.GetAxisRaw("Axis3"), Input.GetAxisRaw("Axis4"));
-                    sabers[0].transform.rotation = Quaternion.Slerp(sabers[0].transform.rotation, Quaternion.Euler(new Vector3(-lstick.y * 60, lstick.x * 60, 0)), .5f);
-                    sabers[0].transform.position = goodcam.transform.position + new Vector3(.2f, -.5f, .5f);
-                    sabers[1].transform.rotation = Quaternion.Slerp(sabers[1].transform.rotation, Quaternion.Euler(new Vector3(-rstick.y * 60, rstick.x * 60, 0)), .5f);
-                    sabers[1].transform.position = goodcam.transform.position + new Vector3(-.2f, -.5f, .5f);
+                    sabers2[0].transform.rotation = Quaternion.Slerp(sabers2[0].transform.rotation, Quaternion.Euler(new Vector3(-lstick.y * 60, lstick.x * 60, 0)), .5f);
+                    sabers2[0].transform.position = goodcam.transform.position + new Vector3(.2f, -.5f, .5f);
+                    sabers2[1].transform.rotation = Quaternion.Slerp(sabers2[1].transform.rotation, Quaternion.Euler(new Vector3(-rstick.y * 60, rstick.x * 60, 0)), .5f);
+                    sabers2[1].transform.position = goodcam.transform.position + new Vector3(-.2f, -.5f, .5f);
                 }
 
                 // just mouse + keyboard
@@ -174,41 +178,41 @@ namespace touchsaber
                         s2 = 1;
                         s1 = 0;
                     }
-                    sabers[s1].transform.LookAt(goodcam.transform);
-                    sabers[s1].transform.Rotate(180, 180, 180);
-                    sabers[s2].transform.LookAt(goodcam.transform);
-                    sabers[s2].transform.Rotate(180, 180, 180);
+                    sabers2[s1].transform.LookAt(goodcam.transform);
+                    sabers2[s1].transform.Rotate(180, 180, 180);
+                    sabers2[s2].transform.LookAt(goodcam.transform);
+                    sabers2[s2].transform.Rotate(180, 180, 180);
                     if (GetKey(KeyCode.A) && GetKey(KeyCode.D))
                     {
-                        sabers[s1].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f + 50f, 0);
-                        sabers[s1].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(1f, 0, .2f);
+                        sabers2[s1].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f + 50f, 0);
+                        sabers2[s1].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(1f, 0, .2f);
 
-                        sabers[s2].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f - 50f, 0);
-                        sabers[s2].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(-1f, 0, .2f);
+                        sabers2[s2].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f - 50f, 0);
+                        sabers2[s2].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(-1f, 0, .2f);
                     }
                     else if (GetKey(KeyCode.A))
                     {
-                        sabers[s1].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f, 0);
-                        sabers[s1].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(0, .2f, .2f);
+                        sabers2[s1].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f, 0);
+                        sabers2[s1].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(0, .2f, .2f);
 
-                        sabers[s2].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f, 0);
-                        sabers[s2].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(0, -.2f, .2f);
+                        sabers2[s2].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f, 0);
+                        sabers2[s2].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(0, -.2f, .2f);
                     }
                     else if (GetKey(KeyCode.D))
                     {
-                        sabers[s2].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f, 0);
-                        sabers[s2].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(0, .2f, .2f);
+                        sabers2[s2].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f, 0);
+                        sabers2[s2].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(0, .2f, .2f);
 
-                        sabers[s1].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f, 0);
-                        sabers[s1].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(0, -.2f, .2f);
+                        sabers2[s1].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f, 0);
+                        sabers2[s1].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(0, -.2f, .2f);
                     }
                     else
                     {
-                        sabers[s1].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f, 0);
-                        sabers[s1].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(.2f, 0, .2f);
+                        sabers2[s1].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f, 0);
+                        sabers2[s1].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(.2f, 0, .2f);
 
-                        sabers[s2].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f, 0);
-                        sabers[s2].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(-.2f, 0, .2f);
+                        sabers2[s2].transform.eulerAngles = new Vector3((bi.mousePosition.y - Screen.height / 3) * -.2f, (bi.mousePosition.x - 1 * Screen.width / 2) * .1f, 0);
+                        sabers2[s2].transform.position = goodcam.ScreenToWorldPoint(new Vector3(bi.mousePosition.x, bi.mousePosition.y, -goodcam.transform.position.z)) + new Vector3(-.2f, 0, .2f);
                     }
                 }
             }
