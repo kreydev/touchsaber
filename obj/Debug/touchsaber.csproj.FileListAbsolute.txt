@@ -24,3 +24,4 @@ C:\Users\James Chemacki\Documents\Coding\touchsaber\bin\Debug\VRUI.dll
 C:\Users\James Chemacki\Documents\Coding\touchsaber\bin\Debug\BeatmapCore.dll
 C:\Users\James Chemacki\Documents\Coding\touchsaber\bin\Debug\BGLib.Attributes.dll
 C:\Users\James Chemacki\Documents\Coding\touchsaber\bin\Debug\DataModels.dll
+C:\Users\James Chemacki\Documents\Coding\touchsaber\bin\Debug\GameplayCore.dll

@@ -52,6 +52,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\BSManager\BSInstances\Beat Saber\Beat Saber_Data\Managed\DataModels.dll</HintPath>
     </Reference>
+    <Reference Include="GameplayCore, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Heck, Version=1.7.9.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
